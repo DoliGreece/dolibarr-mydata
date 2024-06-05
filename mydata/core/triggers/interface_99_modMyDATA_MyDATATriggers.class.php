@@ -264,7 +264,13 @@ class InterfaceMyDATATriggers extends DolibarrTriggers
                 if (!$resql) {
                     $error++;
                 }
-            } 
+            } elseif (in_array($selectedcode, array('8.2'))) {
+                $sql1 = "UPDATE ".MAIN_DB_PREFIX."facture INNER JOIN ".MAIN_DB_PREFIX."facture_extrafields ON ".MAIN_DB_PREFIX."facture.rowid = ".MAIN_DB_PREFIX."facture_extrafields.fk_object set mydata_type ='6' ORDER BY ".MAIN_DB_PREFIX."facture.rowid DESC LIMIT 1";	
+		
+                $resql = $this->db->query($sql1);
+                if (!$resql) {
+                    $error++;
+                }
         } elseif (GETPOST('type') == Facture::TYPE_CREDIT_NOTE) {
             $subtypearray = $object->getArrayOfInvoiceSubtypes(1);
             $subtype = GETPOST('subtype');
