@@ -440,6 +440,9 @@ while ($row = $result->fetch_assoc())
 		case 5:
 			$mydata_type_str = "Πιστωτικό Λιανικής";
 			break;
+		case 6:
+			$mydata_type_str = "Ειδικό Στοιχείο – Απόδειξης Είσπραξης Φόρου Διαμονής";
+			break;
 	}
 
 
