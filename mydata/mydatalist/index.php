@@ -280,6 +280,19 @@ while ($row = $result->fetch_assoc())
 		$exchangeRate="";
 	}
 
+	//Ειδικό στοιχείο φόρου (GR+EU)
+	elseif ($mydata_type == 6){
+		$invtype = "8.2"; //ESF
+		$classificationCategory = "category1_95";
+		$classificationType = '';
+		if ($vat_percent == 0) { 
+			$vat_categ = 8; 
+			$vatExemptionCategory = "<vatExemptionCategory>".VAT_EXEMP_CATEG_GR."</vatExemptionCategory>";
+		}
+		$counterpart_name = "";
+		$exchangeRate="";
+	}
+
 	//PISTOTIKO TIMOLOGIO ( Πώληση Εμπορευμάτων)
 	elseif ($mydata_type == 4){
 
@@ -367,12 +380,14 @@ while ($row = $result->fetch_assoc())
 
 	// VAT Percentage
 	if ($vat_percent == 24) { $vat_categ = 1;}
-	else if ($vat_percent == 13) { $vat_categ = 2;}
-	else if ($vat_percent == 6) { $vat_categ = 3;}
-	else if ($vat_percent == 17) { $vat_categ = 4;}
-	else if ($vat_percent == 9) { $vat_categ = 5;}
-	else if ($vat_percent == 4) { $vat_categ = 6;}
-	else if  ($vat_percent == 0) { $vat_categ = 7;}
+	elseif ($vat_percent == 13) { $vat_categ = 2;}
+	elseif ($vat_percent == 6) { $vat_categ = 3;}
+	elseif ($vat_percent == 17) { $vat_categ = 4;}
+	elseif ($vat_percent == 9) { $vat_categ = 5;}
+	elseif ($vat_percent == 4) { $vat_categ = 6;}
+	elseif  ($vat_percent == 0) { $vat_categ = 7;}  // Άνευ Φ.Π.Α.
+	//elseif  ($vat_percent == 0) { $vat_categ = 8;} 	Εγγραφές χωρίς ΦΠΑ (πχ Μισθοδοσία, Αποσβέσεις)
+	else if  ($vat_percent == 3) { $vat_categ = 9;}
 	else {$vat_categ = 1;}
 
 
